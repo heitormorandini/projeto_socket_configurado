@@ -1,11 +1,9 @@
-module.exports = (app) => {
-	const controller = require('../controllers/chat');
+module.exports = function(application) {
+    application.get('/chat', function(req, res) {
+        application.app.controllers.chat.iniciaChat(application, req, res);
+    });
 
-	app.post('/chat', (req, res) => {
-		controller.iniciaChat(app, req, res);
-	});
-
-	app.get('/chat', (req, res) => {
-		controller.iniciaChat(app, req, res);
-	});
+    application.post('/chat', function(req, res) {
+        application.app.controllers.chat.iniciaChat(application, req, res);
+    });
 }
